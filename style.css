@@ -78,9 +78,11 @@ a {
   color: #b66d61;
   font-size: 1.1em;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 a:hover {
   color: #ff864e;
   font-style: italic;
+  white-space: nowrap;
 }
