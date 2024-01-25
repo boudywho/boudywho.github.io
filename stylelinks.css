@@ -66,7 +66,7 @@ li {
 
 li:first-child {
   display: inline-block;
-  color: #4b9797;
+  color: #978484;
   font-size: 1.5em;
   font-weight: 600;
   text-align: center;
@@ -75,7 +75,7 @@ li:first-child {
 }
 
 a {
-  color: #264646;
+  color: #421919;
   font-size: 1.1em;
   text-decoration: none;
 }
