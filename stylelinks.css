@@ -93,4 +93,5 @@ a:hover {
   color: #dcc6a0; /* Change this to the color you want for the text */
   text-decoration: none; /* Removes the default underline from the link */
   border: 1px solid black; /* Adds a black border */
+  white-space: nowrap;
  }
