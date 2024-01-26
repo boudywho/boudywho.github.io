@@ -85,3 +85,12 @@ a:hover {
   color: #000000;
   font-style: italic;
 }
+
+.curved-border {
+  border-radius: 2em; /* Adjust this value to control how much the border curves */
+  padding: .2em 1em; /* Adjust these values to control the size of the link */
+  background-color: transparent; /* Makes the background transparent */
+  color: #dcc6a0; /* Change this to the color you want for the text */
+  text-decoration: none; /* Removes the default underline from the link */
+  border: 1px solid black; /* Adds a black border */
+ }
