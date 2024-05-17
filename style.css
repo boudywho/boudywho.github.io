@@ -36,7 +36,8 @@ body {
   display: flex;
   flex-direction: column; 
   align-items: center; 
-  margin-top: 13em; /* Adjust this for vertical positioning */
+  margin-top: 13em; 
+  transition: transform 0.3s ease; /* Add transition to the container */
 }
 
 .profile-image {
@@ -44,17 +45,12 @@ body {
   width: 300px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  transition: transform 0.3s ease; 
-  opacity: 0; /* Initially hidden */
-  animation: slideIn 1.2s ease-in-out forwards; /* Slide in after container */
+  opacity: 0; 
+  animation: slideIn 1.2s ease-in-out forwards;
 }
 
-.profile-image:hover {
-  transform: rotateY(10deg); 
-}
-
-nav {
-  width: 100%; 
+.image-container:hover {  /* Apply hover to the container */
+  transform: rotateY(-10deg) rotateX(-5deg) scale(1.065); 
 }
 
 h1 {
