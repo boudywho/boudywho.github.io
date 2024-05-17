@@ -4,7 +4,7 @@ Welcome to my digital playground! This is where I experiment with web developmen
 
 ### Goals 🚀
 
-* **Aesthetically Pleasing Design:** I'm all about creating a visually captivating experience with smooth animations and a clean, modern aesthetic design.
+* **Aesthetically Pleasing Design:** I'm all about creating a visually captivating experience with smooth animations and a clean, modern, aesthetic design.
 * **Coding Skills Development:** This project is my coding gym – a place to learn, practice, and level up my skills.
 * **Personalized Profile Page:** I envision this as a central hub for all things me – my favorite links, apps, projects – all easily accessible.
 
