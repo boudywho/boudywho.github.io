@@ -1,1 +1,1 @@
-# This isn't fully my work :)
+# I have adjusted a lot of stuff + added animations + multiple web pages + tried to make it more aesthetically pleasing :)
