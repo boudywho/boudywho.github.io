@@ -32,4 +32,4 @@ This is a personal project where I'm exploring web development, design, and my o
 * **Mini-Game:**  Adding a small, interactive game, like a text-based adventure or puzzle, to keep things engaging.
 * **Web Page Expansion:** I plan to add more web pages, improve the Spotify playlist page, and create a more comprehensive bookmarks section with folders for organization.
 
-I'm excited to see this project evolve and learn as I go. I'll be sharing updates and progress along the way! 
+I'm excited to see this project evolve and learn as I go. I'll be sharing updates and progress along the way on my telegram channel (found on Main Page)! 
