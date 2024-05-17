@@ -8,43 +8,70 @@ body {
   color: #dcc6a0;
   background: #433055;
   font-family: Font;
-  align-items: center; 
-  justify-content: center; 
-  height: 100vh; 
-  margin: 0; 
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Make sure body fills the screen */
+  margin: 0;
+  overflow: visible; /* Hide scrollbar during animations */
+}
+
+/* Container for layout */
+.container {
+  display: flex;
+  flex-direction: column; /* Arrange content vertically */
+  align-items: center;
+  max-width: 1200px;
+  margin: 2em auto;
+  padding: 2em;
+  background: rgba(67, 48, 85, 0.8);
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 1.5s ease-in-out forwards; /* Fade in on load */
 }
 
 nav {
-  text-align: center; 
-  padding: 2em; 
-  background: rgba(67, 48, 85, 0.8); 
-  border-radius: 15px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  width: 100%; /* Occupy available width */
+  text-align: center;
 }
 
 h1 {
   font-size: 2.5em;
   font-weight: 600;
   margin-bottom: 2em;
-  color: #edc9af; 
+  color: #edc9af;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  animation: glow 2s infinite alternate; 
+  text-shadow: 0 0 10px #edc9af; /* Initial glow */
+}
+
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 2em;
+  margin-bottom: 2em; 
+  opacity: 0; /* Initially hidden */
+  animation: fadeInUp 1.6s ease-in-out forwards; /* Fade in after h1 */
 }
 
 .playlist-container {
-  margin: 1em 0; 
-  width: 60%; /* Wider playlists */
-  max-width: 600px; /* Increased max-width */
-  margin-left: auto; 
-  margin-right: auto; 
-  animation: subtleScale 4s infinite alternate; /* Added animation */
+  animation: subtleScale 4s infinite alternate;
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  opacity: 0; /* Initially hidden */
+  animation: slideIn 1s ease-in-out forwards; /* Slide in after grid */
+}
+
+.playlist-container:hover {
+  transform: scale(1.05); /* Gentle scaling on hover */
 }
 
 .playlist-container iframe {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .home-link {
-  margin-top: 2em; 
+  text-align: center; /* Center the link */
 }
 
 .home-link a {
@@ -52,27 +79,47 @@ h1 {
   font-size: 1.2em;
   text-decoration: none;
   padding: 0.8em 1.5em;
-  border: 2px solid #dcc6a0; 
-  border-radius: 20px; 
-  transition: all 0.3s ease; 
+  border: 2px solid #dcc6a0;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  display: inline-block; /* Make the link a block element for transitions */
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 1s ease-in-out forwards; /* Fade in after playlists */
 }
 
 .home-link a:hover {
-  background-color: #dcc6a0; 
-  color: #433055; 
+  background-color: #dcc6a0;
+  color: #433055;
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 /* Animations */
 .animate-glow {
-  animation: glow 2s infinite alternate; /* Added glow animation to title */
+  animation: glow 2s infinite alternate;
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 10px #edc9af; } /* Adjust glow color */
-  to { text-shadow: 0 0 20px #edc9af; } /* Adjust glow color */
+  from { text-shadow: 0 0 10px #edc9af; }
+  to { text-shadow: 0 0 20px #edc9af; }
 }
 
 @keyframes subtleScale {
   from { transform: scale(1); }
-  to { transform: scale(1.02); } /* Subtle scaling effect */
+  to { transform: scale(1.02); } 
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }

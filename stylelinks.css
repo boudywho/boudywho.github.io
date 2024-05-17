@@ -3,50 +3,68 @@
   src: url("./JetBrains.ttf");
 }
 
-html {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-}
-
 body {
   display: flex;
   color: #dcc6a0;
   background: #75604c;
-  margin-right: 9em;
-  padding: 1em;
   font-family: Font;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden; /* Hide scrollbar during animations */
 }
 
-img {
-  height: 600px;
-  width: 350px;
-  margin-right: 2em;
-  border-radius: 5px;
-  transition: transform 0.2s ease-in-out;
+/* Overall container for layout */
+.container {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  max-width: 1200px;
+  margin: 2em auto;
+  padding: 2em;
+  background: rgba(117, 96, 76, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 1.5s ease-in-out forwards; /* Fade in on load */
+}
+
+/* Image container styling */
+.image-container {
+  margin-right: 3em;
+  perspective: 1000px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 13em; /* Adjust this value to control vertical position */
+}
+
+.profile-image {
+  height: 500px;
+  width: 300px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition: transform 0.3s ease; 
+  opacity: 0; /* Initially hidden */
+  animation: slideIn 1.2s ease-in-out forwards; /* Slide in after container */
 }
 
-img:hover {
-  transform: scale(1.05);  /* Increase image size by 10% */
+.profile-image:hover {
+  transform: rotateY(10deg); 
 }
 
 nav {
-  display: grid;
-  grid-row-gap: 1em;
-  grid-template-columns: 1fr 1fr;
-  min-width: 24em;
-  grid-auto-rows: max-content;
+  width: 100%; /* Occupy available space next to image */
 }
 
 h1 {
   font-size: 2.2em;
   font-weight: 600;
-  grid-column: 1/-1;
   text-align: center;
-  margin-bottom: 0;
-  animation: fadeIn 1s ease-in-out;
+  margin-bottom: 0.5em;
+  /* Glow Effect for Title */
+  animation: glow 2s infinite alternate; 
+  text-shadow: 0 0 10px #dcc6a0; /* Initial glow */
 }
 
 /* Glow Effect for Title */
@@ -56,10 +74,10 @@ h1 {
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #dcc6a0; /* Adjust glow color */
+    text-shadow: 0 0 10px #dcc6a0; 
   }
   to {
-    text-shadow: 0 0 20px #dcc6a0; /* Adjust glow color */
+    text-shadow: 0 0 20px #dcc6a0; 
   }
 }
 
@@ -67,72 +85,61 @@ h2 {
   font-size: 1.2em;
   font-weight: 600;
   color: #997e65;
-  grid-column: 1/-1;
   text-align: center;
-  margin-bottom: 2.3em;
-  animation: fadeIn 1s ease-in-out;
+  margin-bottom: 2em;
+  animation: fadeIn 1s ease-in-out forwards; 
+}
+
+/* Grid for navigation sections */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  grid-gap: 2em;
+  opacity: 0; /* Initially hidden */
+  animation: fadeInUp 1.6s ease-in-out forwards; /* Fade in after h2 */
+}
+
+.nav-section {
+  background: rgba(0, 0, 0, 0.1); /* Subtle section background */
+  padding: 1.5em;
+  border-radius: 8px;
 }
 
 ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  white-space: nowrap;
-  list-style-type: none;
 }
 
 li {
   line-height: 1.4em;
-  margin-left: 4.8em;
   opacity: 0;
   animation: slideIn 1s ease-in-out forwards;
 }
 
-li:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-li:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-li:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-li:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-li:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-li:nth-child(6) {
-  animation-delay: 0.6s;
-}
-
-li:nth-child(7) {
-  animation-delay: 0.7s;
-}
+li:nth-child(1) { animation-delay: 0.1s; }
+li:nth-child(2) { animation-delay: 0.2s; }
+li:nth-child(3) { animation-delay: 0.3s; }
+li:nth-child(4) { animation-delay: 0.4s; }
+li:nth-child(5) { animation-delay: 0.5s; }
+li:nth-child(6) { animation-delay: 0.6s; }
+li:nth-child(7) { animation-delay: 0.7s; }
 
 li:first-child {
-  display: inline-block;
+  display: block; 
   color: #978484;
   font-size: 1.5em;
   font-weight: 600;
-  text-align: center;
-  line-height: 2em;
-  margin-left: 2.5em;
+  margin-bottom: 1em; 
   opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
-  animation-delay: 0s;
 }
+
 
 a {
   color: #421919;
   font-size: 1.1em;
   text-decoration: none;
-  white-space: nowrap;
   transition: color 0.3s ease;
 }
 
@@ -141,54 +148,56 @@ a:hover {
   font-style: italic;
 }
 
+
+/* Buttons container */
+.buttons {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  margin-top: 1em; /* Space above buttons */
+}
+
 .curved-border {
-  border-radius: 2em; 
-  padding: .2em 1em; 
+  border-radius: 2em;
+  padding: .3em 1em; /* Smaller padding */
   background-color: transparent;
   color: #dcc6a0;
   text-decoration: none;
-  border: 1px solid black;
+  border: 1px solid rgb(146, 82, 82);
   white-space: nowrap;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
- }
+  font-size: 0.9em; /* Smaller font size */
+  margin-bottom: 0.5em; /* Spacing between buttons */
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 1s ease-in-out forwards; /* Fade in after nav */
+}
+
+.curved-border span { /* Target the text within the button */
+  margin-right: 0.5em; /* Spacing between text and arrow */
+}
 
 .curved-border:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: buttonPulse 1s infinite alternate;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes slideIn {
-  0% {
-    transform: translateX(-20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.nav-section {
-  animation: fadeInUp 1s ease-in-out;
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes buttonPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
 }
