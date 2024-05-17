@@ -46,6 +46,7 @@ h1 {
   grid-column: 1/-1;
   text-align: center;
   margin-bottom: 0;
+  animation: fadeIn 1s ease-in-out;
 }
 
 h2 {
@@ -55,6 +56,7 @@ h2 {
   grid-column: 1/-1;
   text-align: center;
   margin-bottom: 2.3em;
+  animation: fadeIn 1s ease-in-out;
 }
 
 ul {
@@ -67,6 +69,32 @@ ul {
 li {
   line-height: 1.4em;
   margin-left: 4.8em;
+  opacity: 0;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+li:nth-child(6) {
+  animation-delay: 0.6s;
 }
 
 li:first-child {
@@ -77,12 +105,16 @@ li:first-child {
   text-align: center;
   line-height: 2em;
   margin-left: 2.5em;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 0s;
 }
 
 a {
   color: #b66d61;
   font-size: 1.1em;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:hover {
@@ -91,11 +123,65 @@ a:hover {
 }
 
 .curved-border {
-  border-radius: 2em; /* Adjust this value to control how much the border curves */
-  padding: .2em 1em; /* Adjust these values to control the size of the link */
-  background-color: transparent; /* Makes the background transparent */
-  color: #dcc6a0; /* Change this to the color you want for the text */
-  text-decoration: none; /* Removes the default underline from the link */
-  border: 1px solid rgb(146, 82, 82); /* Adds a Brownish Border */
+  border-radius: 2em;
+  padding: .2em 1em;
+  background-color: transparent;
+  color: #dcc6a0;
+  text-decoration: none;
+  border: 1px solid rgb(146, 82, 82);
   white-space: nowrap;
- }
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block; /* Required for button animations to work properly */
+}
+
+.curved-border:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  animation: buttonPulse 1s infinite alternate; /* Added button animation */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.nav-section {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Animation */
+@keyframes buttonPulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
