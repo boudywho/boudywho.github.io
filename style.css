@@ -10,8 +10,8 @@ body {
   font-family: Font;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; 
-  margin: 0; 
+  min-height: 100vh;
+  margin: 0;
   overflow: hidden; /* Hide scrollbar during animations */
 }
 
@@ -19,38 +19,43 @@ body {
 .container {
   display: flex;
   align-items: flex-start; /* Align to the top */
-  max-width: 1200px; 
-  margin: 2em auto; 
+  max-width: 1200px;
+  margin: 2em auto;
   padding: 2em;
-  background: rgba(33, 29, 29, 0.8); 
+  background: rgba(33, 29, 29, 0.8);
   border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.7); /* More intense shadow */
   opacity: 0; /* Initially hidden */
-  animation: fadeIn 1.5s ease-in-out forwards; /* Fade in on load */
+  animation: fadeIn 2s ease-out forwards; /* Faster fade-in */
+}
+
+/* Wrapper to position buttons below the image */
+.image-wrapper {
+  display: flex;
+  flex-direction: column; /* Stack image and buttons vertically */
+  align-items: center; /* Center horizontally */
+  margin-right: 3em;
+  margin-top: 13em; 
 }
 
 /* Image container styling */
 .image-container {
-  margin-right: 3em;
-  perspective: 1000px; 
-  display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  margin-top: 13em; 
-  transition: transform 0.3s ease; /* Add transition to the container */
+  perspective: 1000px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add transitions to container */ 
 }
 
 .profile-image {
   height: 500px;
   width: 300px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  opacity: 0; 
-  animation: slideIn 1.2s ease-in-out forwards;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+  opacity: 0;
+  animation: slideIn 1.5s ease-out forwards; /* Faster slide-in */
 }
 
-.image-container:hover {  /* Apply hover to the container */
-  transform: rotateY(-10deg) rotateX(-5deg) scale(1.065); 
+.image-container:hover { /* Apply transform to the container on hover */
+  transform: translateY(-10px); /* Match lift with other elements */
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.8); /* More intense shadow */
 }
 
 h1 {
@@ -59,21 +64,21 @@ h1 {
   text-align: center;
   margin-bottom: 0.5em;
   /* Glow Effect for Title */
-  animation: glow 2s infinite alternate; 
-  text-shadow: 0 0 10px #dcc6a0; /* Initial glow */
+  animation: glow 1s infinite alternate; /* Faster glow animation */
+  text-shadow: 0 0 15px #dcc6a0; /* Larger initial glow */
 }
 
 /* Glow Effect for Title */
-.glow-title { 
-  animation: glow 2s infinite alternate; 
+.glow-title {
+  animation: glow 1s infinite alternate; /* Faster glow animation */
 }
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #dcc6a0; 
+    text-shadow: 0 0 15px #dcc6a0; /* Larger glow */
   }
   to {
-    text-shadow: 0 0 20px #dcc6a0; 
+    text-shadow: 0 0 30px #dcc6a0; /* Larger glow */
   }
 }
 
@@ -83,7 +88,7 @@ h2 {
   color: #a56951;
   text-align: center;
   margin-bottom: 2em;
-  animation: fadeIn 1s ease-in-out forwards; 
+  animation: fadeIn 1.2s ease-out forwards; /* Faster fade-in */
 }
 
 /* Grid for navigation sections */
@@ -92,13 +97,20 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
   grid-gap: 2em;
   opacity: 0; /* Initially hidden */
-  animation: fadeInUp 1.6s ease-in-out forwards; /* Fade in after h2 */
+  animation: fadeInUp 1.8s ease-out forwards; /* Faster fade-in */
 }
 
 .nav-section {
   background: rgba(0, 0, 0, 0.1); /* Subtle section background */
   padding: 1.5em;
   border-radius: 8px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6); /* Stronger initial shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Faster transitions */
+}
+
+.nav-section:hover {
+  transform: translateY(-10px); /* Increased lift */
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.8); /* More intense shadow */
 }
 
 ul {
@@ -110,45 +122,82 @@ ul {
 li {
   line-height: 1.4em;
   opacity: 0;
-  animation: slideIn 1s ease-in-out forwards;
+  animation: slideIn 0.8s ease-out forwards; /* Faster slide-in */
+  transition: color 0.2s ease; /* Faster color transition */
 }
 
-li:nth-child(1) { animation-delay: 0.1s; }
-li:nth-child(2) { animation-delay: 0.2s; }
-li:nth-child(3) { animation-delay: 0.3s; }
-li:nth-child(4) { animation-delay: 0.4s; }
-li:nth-child(5) { animation-delay: 0.5s; }
-li:nth-child(6) { animation-delay: 0.6s; }
+li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+li:nth-child(6) {
+  animation-delay: 0.6s;
+}
 
 li:first-child {
-  display: block; 
+  display: block;
   color: #cca86b;
   font-size: 1.5em;
   font-weight: 600;
-  margin-bottom: 1em; 
+  margin-bottom: 1em;
   opacity: 0;
-  animation: fadeIn 1s ease-in-out forwards;
+  animation: fadeIn 1s ease-out forwards; /* Faster fade-in */
 }
 
-
+/* Remove default underline from all links */
 a {
-  color: #b66d61;
+   text-decoration: none;
+   color: #b66d61;
   font-size: 1.1em;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease, transform 0.2s ease; 
+  display: inline-block; 
+  padding: 2px 0; 
 }
 
-a:hover {
+/* Apply underline only on hover for links that are not buttons */
+a:not(.curved-border):hover {
   color: #ff864e;
   font-style: italic;
+  transform: translateY(-3px); 
+  background-size: 100% 200%; 
+  background-position: 0 100%; 
+}
+
+/* Animated Underline - triggered on hover */
+a:not(.curved-border)::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; 
+  background-color: #ff864e;
+  transform-origin: left;
+  transform: scaleX(0); /* Initially hide the line */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+a:not(.curved-border):hover::before {
+  transform: scaleX(1); /* Scale to full width on hover */
 }
 
 /* Spotify player styling */
 .spotify-player {
   margin: 2em 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); /* Stronger initial shadow */
   opacity: 0; /* Initially hidden */
-  animation: fadeInUp 1.8s ease-in-out forwards; /* Fade in after nav */
+  animation: fadeInUp 2s ease-out forwards; /* Faster fade-in */
 }
 
 /* Buttons container */
@@ -156,60 +205,86 @@ a:hover {
   display: flex;
   flex-direction: column; /* Stack buttons vertically */
   margin-top: 1em; /* Space above buttons */
+  text-align: center; /* Center the buttons */
 }
 
 .curved-border {
   border-radius: 2em;
-  padding: .3em 1em; /* Smaller padding */
+  padding: 0.3em 1em; 
   background-color: transparent;
   color: #dcc6a0;
-  text-decoration: none;
   border: 1px solid rgb(146, 82, 82);
   white-space: nowrap;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-size: 0.9em; /* Smaller font size */
-  margin-bottom: 0.5em; /* Spacing between buttons */
-  opacity: 0; /* Initially hidden */
-  animation: fadeIn 1s ease-in-out forwards; /* Fade in after nav */
+  font-size: 0.9em; 
+  margin-bottom: 0.5em; 
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); 
+  opacity: 0; 
+  animation: fadeIn 1.2s ease-out forwards; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease; /* Smoother transitions */
 }
 
-.curved-border span { /* Target the text within the button */
-  margin-right: 0.5em; /* Spacing between text and arrow */
+.curved-border span {
+  margin-right: 0.5em; 
 }
 
 .curved-border:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  animation: buttonPulse 1s infinite alternate;
+  transform: translateY(-5px) scale(1.1); /* More dramatic pop-out */
+  box-shadow: 0px 20px 45px rgba(0, 0, 0, 0.8); /* Larger, more intense shadow */
+  text-shadow: 0 0 10px #dcc6a0, 0 0 20px #dcc6a0; /* Strong glow effect */
 }
+
 
 /* Animations */
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes slideIn {
-  0% { transform: translateX(-20px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0% {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes buttonPulse {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08); /* Increased scale for more noticeable pulse */
+  }
 }
 
 /* Clock Animations */
 #date {
-  animation: subtlePulse 1s infinite alternate; 
+  animation: subtlePulse 0.8s infinite alternate; /* Faster pulse animation */
 }
 
 @keyframes subtlePulse {
-  from { opacity: 1; }
-  to { opacity: 0.8; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.7; /* Increased opacity change for a more noticeable pulse */
+  }
 }
