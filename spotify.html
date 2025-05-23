@@ -1,46 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>~/Spotify</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~/Spotify Playlists 🎧</title>
     <link rel="stylesheet" type="text/css" href="stylespotify.css">
-  </head>
-  <body>
-    <div class="container">
-      <nav>
-        <h1 class="animate-glow">•* ⁀ ➷ My playlists .ೃ࿐</h1>
-  
-        <div class="playlist-grid"> 
-          <div class="playlist-container">
-            <iframe 
-              style="border-radius:12px" 
-              src="https://open.spotify.com/embed/playlist/4aTtB4MV00ZFwQvEUjRkHj?utm_source=generator" 
-              width="100%" 
-              height="352" 
-              frameBorder="0" 
-              allowfullscreen="" 
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-              loading="lazy"></iframe>
-          </div>
-    
-          <div class="playlist-container">
-            <iframe 
-              style="border-radius:12px" 
-              src="https://open.spotify.com/embed/playlist/6xk8MBSfV8XipqVJd4Yp9W?utm_source=generator&theme=0" 
-              width="100%" 
-              height="352" 
-              frameBorder="0" 
-              allowfullscreen="" 
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-              loading="lazy"></iframe>
-          </div>
-        </div> 
-  
-        <div class="home-link">
-          <a href="index.html">ˏˋ°•*⁀➷┊ Main Page ┆· • . °</a>
-        </div>
-      </nav>
+</head>
+<body>
+    <div class="spotify-showcase">
+        <header>
+            <h1 class="animate-glow">Curated Soundscapes ✦</h1>
+        </header>
+
+        <main class="playlist-grid-area">
+            <div class="playlist-grid">
+                <div class="playlist-container">
+                    <iframe
+                        style="border-radius:14px;"
+                        src="https://open.spotify.com/embed/playlist/4aTtB4MV00ZFwQvEUjRkHj?utm_source=generator"
+                        width="100%"
+                        height="352"
+                        frameBorder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"></iframe>
+                </div>
+
+                <div class="playlist-container">
+                    <iframe
+                        style="border-radius:14px;"
+                        src="https://open.spotify.com/embed/playlist/6xk8MBSfV8XipqVJd4Yp9W?utm_source=generator&theme=0"
+                        width="100%"
+                        height="352"
+                        frameBorder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"></iframe>
+                </div>
+                <!-- Add more playlist-container divs here if you have more playlists -->
+                <!-- Example for a third playlist -->
+                <!--
+                <div class="playlist-container">
+                    <iframe
+                        style="border-radius:14px;"
+                        src="YOUR_OTHER_PLAYLIST_EMBED_URL"
+                        width="100%"
+                        height="352"
+                        frameBorder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"></iframe>
+                </div>
+                -->
+            </div>
+        </main>
+
+        <footer>
+            <div class="home-link">
+                <a href="index.html">‹ Back to Main Page</a>
+            </div>
+        </footer>
     </div>
-    
+    <!-- index.js is included, but primarily affects #date on index.html -->
     <script type="text/javascript" src="index.js"></script>
-  </body>
+</body>
 </html>

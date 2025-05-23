@@ -1,125 +1,276 @@
+:root {
+  --spotify-bg-color-start: #1d1330; /* Deeper, slightly desaturated purple */
+  --spotify-bg-color-mid: #2a1d45;   /* Mid tone, richer */
+  --spotify-bg-color-end: #120b20;   /* Darker, almost black-purple */
+  --spotify-container-bg: rgba(28, 20, 48, 0.9); /* Slightly more opaque, darker container */
+  --spotify-text-color: #eadaff; /* Brighter lavender, good contrast */
+  --spotify-primary-accent: #c879ff; /* Lighter, more vibrant Purple */
+  --spotify-primary-accent-rgb: 200, 121, 255;
+  --spotify-secondary-accent: #ff7ddc; /* Vibrant Pink, slightly more saturated */
+  --spotify-glow-color: var(--spotify-primary-accent);
+  --spotify-card-bg: rgba(40, 30, 60, 0.8); /* Darker card background */
+  --spotify-card-hover-bg: rgba(55, 42, 80, 0.92); /* Richer hover */
+  --spotify-shadow-color: rgba(0, 0, 0, 0.6); /* Deeper shadow */
+  --spotify-border-color: rgba(var(--spotify-primary-accent-rgb), 0.4);
+
+  --font-main: "Font", monospace, sans-serif;
+
+  --animation-duration-fast: 0.3s;
+  --animation-duration-medium: 0.5s;
+  --animation-duration-slow: 0.8s;
+  --animation-ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  --animation-ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 @font-face {
   font-family: "Font";
   src: url("./JetBrains.ttf");
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   display: flex;
-  color: #dcc6a0;
-  background: #433055;
-  font-family: Font;
+  color: var(--spotify-text-color);
+  font-family: var(--font-main);
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Make sure body fills the screen */
+  min-height: 100vh;
   margin: 0;
-  overflow: visible; /* Hide scrollbar during animations */
+  padding: 2rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: linear-gradient(-45deg, var(--spotify-bg-color-start), var(--spotify-bg-color-mid), var(--spotify-bg-color-end), var(--spotify-bg-color-mid), var(--spotify-bg-color-start));
+  background-size: 400% 400%;
+  animation: spotifyGradientBG 20s ease infinite;
 }
 
-/* Container for layout */
-.container {
+@keyframes spotifyGradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.spotify-showcase {
   display: flex;
-  flex-direction: column; /* Arrange content vertically */
+  flex-direction: column;
   align-items: center;
-  max-width: 1200px;
-  margin: 2em auto;
-  padding: 2em;
-  background: rgba(67, 48, 85, 0.8);
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  opacity: 0; /* Initially hidden */
-  animation: fadeIn 1.5s ease-in-out forwards; /* Fade in on load */
+  max-width: 1150px; /* Slightly wider for playlist content */
+  width: 100%;
+  margin: auto;
+  padding: 3rem 3.5rem; /* More padding */
+  background: var(--spotify-container-bg);
+  border-radius: 24px; /* Smoother radius */
+  box-shadow: 0px 30px 70px var(--spotify-shadow-color), 0 0 40px rgba(var(--spotify-primary-accent-rgb), 0.15);
+  opacity: 0;
+  transform: translateY(50px) scale(0.93);
+  animation: spotifyFadeInShowcase var(--animation-duration-slow) var(--animation-ease-out-cubic) 0.2s forwards;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--spotify-border-color);
 }
 
-nav {
-  width: 100%; /* Occupy available width */
+@keyframes spotifyFadeInShowcase {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+header {
+  width: 100%;
   text-align: center;
+  margin-bottom: 2.5rem; /* Increased margin */
 }
 
-h1 {
-  font-size: 2.5em;
-  font-weight: 600;
-  margin-bottom: 2em;
-  color: #edc9af;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  animation: glow 2s infinite alternate; 
-  text-shadow: 0 0 10px #edc9af; /* Initial glow */
+h1.animate-glow {
+  font-size: 3em; /* Larger, more impactful */
+  font-weight: 700;
+  color: var(--spotify-text-color);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: spotifyFadeInText var(--animation-duration-medium) var(--animation-ease-out-cubic) 0.6s forwards,
+             spotifyTextGlowPulse 2.5s infinite alternate ease-in-out;
+  letter-spacing: 1px; /* Slightly wider spacing */
+  text-shadow: 0 0 1px transparent; /* Hint for better antialiasing on glow */
+}
+
+@keyframes spotifyFadeInText {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spotifyTextGlowPulse {
+  from {
+    text-shadow: 0 0 8px var(--spotify-glow-color), 0 0 15px var(--spotify-glow-color), 0 0 22px var(--spotify-glow-color),
+                 0 0 30px rgba(var(--spotify-primary-accent-rgb), 0.25), 0 0 40px rgba(var(--spotify-primary-accent-rgb), 0.15);
+  }
+  to {
+    text-shadow: 0 0 12px var(--spotify-glow-color), 0 0 24px var(--spotify-glow-color), 0 0 36px var(--spotify-glow-color),
+                 0 0 50px rgba(var(--spotify-primary-accent-rgb), 0.35), 0 0 70px rgba(var(--spotify-primary-accent-rgb), 0.25);
+  }
+}
+
+.playlist-grid-area {
+  width: 100%;
+  margin-bottom: 3rem; /* Increased margin */
 }
 
 .playlist-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-  gap: 2em;
-  margin-bottom: 2em; 
-  opacity: 0; /* Initially hidden */
-  animation: fadeInUp 1.6s ease-in-out forwards; /* Fade in after h1 */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly wider min for iframes */
+  gap: 3em; /* Increased spacing */
+  width: 100%;
 }
 
 .playlist-container {
-  animation: subtleScale 4s infinite alternate;
-  transition: transform 0.3s ease; /* Smooth transition for hover effect */
-  opacity: 0; /* Initially hidden */
-  animation: slideIn 1s ease-in-out forwards; /* Slide in after grid */
+  background: var(--spotify-card-bg);
+  border-radius: 20px; /* Smoother radius */
+  padding: 1.5em; /* Increased padding */
+  box-shadow: 0px 15px 35px rgba(0,0,0,0.4);
+  transition: transform var(--animation-duration-medium) var(--animation-ease-out-cubic),
+              box-shadow var(--animation-duration-medium) var(--animation-ease-out-cubic),
+              background-color var(--animation-duration-fast) ease;
+  opacity: 0;
+  transform: translateY(40px) scale(0.93) rotateX(-10deg);
+  perspective: 1500px; /* Enhanced 3D effect */
+  border: 1px solid transparent; /* For hover border */
+}
+
+/* Staggered animation for playlist containers */
+.playlist-grid .playlist-container:nth-child(1) {
+  animation: spotifyPopInCard 0.75s var(--animation-ease-back-out) 0.9s forwards;
+}
+.playlist-grid .playlist-container:nth-child(2) {
+  animation: spotifyPopInCard 0.75s var(--animation-ease-back-out) 1.1s forwards;
+}
+.playlist-grid .playlist-container:nth-child(3) { /* For a 3rd playlist */
+  animation: spotifyPopInCard 0.75s var(--animation-ease-back-out) 1.3s forwards;
+}
+/* Add more for more playlists, incrementing the delay by 0.2s */
+
+@keyframes spotifyPopInCard {
+  0% { opacity: 0; transform: translateY(40px) scale(0.93) rotateX(-10deg); box-shadow: 0px 15px 35px rgba(0,0,0,0.4); }
+  70% { opacity: 1; transform: translateY(-12px) scale(1.05) rotateX(5deg); box-shadow: 0px 25px 55px rgba(0,0,0,0.5); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); box-shadow: 0px 18px 40px rgba(0,0,0,0.45); }
 }
 
 .playlist-container:hover {
-  transform: scale(1.05); /* Gentle scaling on hover */
+  transform: scale(1.06) translateY(-15px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0px 28px 60px rgba(0,0,0,0.55), 0 0 25px rgba(var(--spotify-primary-accent-rgb), 0.2);
+  background: var(--spotify-card-hover-bg);
+  border-color: var(--spotify-border-color);
 }
 
 .playlist-container iframe {
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 14px; /* Slightly larger to match container */
+  display: block;
+  width: 100%;
+  height: 352px; /* Explicit height, matches iframe attribute */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Subtle inner shadow for iframe */
 }
 
-.home-link {
-  text-align: center; /* Center the link */
+footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem; /* Increased margin */
 }
 
 .home-link a {
-  color: #dcc6a0;
-  font-size: 1.2em;
+  color: var(--spotify-primary-accent);
+  font-size: 1.2em; /* Slightly larger */
+  font-weight: 600;
   text-decoration: none;
-  padding: 0.8em 1.5em;
-  border: 2px solid #dcc6a0;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  display: inline-block; /* Make the link a block element for transitions */
-  opacity: 0; /* Initially hidden */
-  animation: fadeIn 1s ease-in-out forwards; /* Fade in after playlists */
+  padding: 1em 2.5em; /* More padding */
+  border: 2px solid var(--spotify-primary-accent);
+  border-radius: 50px;
+  transition: all var(--animation-duration-medium) var(--animation-ease-out-cubic); /* Smoother transition */
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) scale(0.85);
+  animation: spotifyPopInButton 0.65s var(--animation-ease-back-out) 2.1s forwards; /* Adjusted delay based on max 2 playlists */
+  background-color: transparent;
+  box-shadow: 0 8px 25px rgba(var(--spotify-primary-accent-rgb), 0.25);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+@keyframes spotifyPopInButton {
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .home-link a:hover {
-  background-color: #dcc6a0;
-  color: #433055;
-  transform: translateY(-2px); /* Slight lift on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  background-color: var(--spotify-primary-accent);
+  color: var(--spotify-bg-color-end);
+  transform: translateY(-6px) scale(1.07);
+  box-shadow: 0 12px 35px rgba(var(--spotify-primary-accent-rgb), 0.45);
 }
 
-/* Animations */
-.animate-glow {
-  animation: glow 2s infinite alternate;
+.home-link a::before { /* Enhanced Shimmer effect */
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -120%;
+  width: 60%;
+  height: 120%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: left 0.8s var(--animation-ease-out-cubic);
 }
 
-@keyframes glow {
-  from { text-shadow: 0 0 10px #edc9af; }
-  to { text-shadow: 0 0 20px #edc9af; }
+.home-link a:hover::before {
+  left: 180%;
 }
 
-@keyframes subtleScale {
-  from { transform: scale(1); }
-  to { transform: scale(1.02); } 
+.home-link a:active {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(var(--spotify-primary-accent-rgb), 0.35);
 }
 
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+@media (max-width: 768px) {
+  .spotify-showcase {
+    padding: 2.5rem 2rem; /* Adjusted padding */
+    margin: 1.5rem;
+  }
+  h1.animate-glow {
+    font-size: 2.4em;
+  }
+  .playlist-grid {
+    gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 }
 
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideIn {
-  0% { transform: translateX(-20px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+  .spotify-showcase {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
+  h1.animate-glow {
+    font-size: 2em;
+  }
+  .playlist-container {
+    padding: 1em;
+    border-radius: 16px;
+  }
+  .playlist-container iframe {
+    border-radius: 10px;
+  }
+  .home-link a {
+    font-size: 1.1em;
+    padding: 0.9em 2em;
+  }
 }
